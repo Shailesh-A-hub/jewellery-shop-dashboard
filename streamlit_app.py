@@ -1,8 +1,6 @@
-import streamlit as st
 import pandas as pd
+import streamlit as st
 import plotly.express as px
-st.title("💎 Jewellery Shop Dashboard")
-st.markdown("### Real-time Overview of Daily Jewellery Sales and Performance")
 
 # Page setup
 st.set_page_config(page_title="Jewellery Shop Dashboard", layout="wide", page_icon="💎")
@@ -11,13 +9,13 @@ st.set_page_config(page_title="Jewellery Shop Dashboard", layout="wide", page_ic
 @st.cache_data
 def load_data():
     try:
-        customers = pd.read_csv(r"C:\Users\shail\OneDrive\Desktop\oops prog\DA2\customers.csv")
+        customers = pd.read_csv("customers.csv")
     except FileNotFoundError:
         st.warning("❌ customers.csv not found. Using empty data.")
         customers = pd.DataFrame(columns=["name", "mobile", "digital_gold", "pending_amount"])
 
     try:
-        summary = pd.read_csv(r"C:\Users\shail\OneDrive\Desktop\oops prog\DA2\summary.csv")
+        summary = pd.read_csv("summary.csv")
     except FileNotFoundError:
         st.warning("❌ summary.csv not found. Using default values.")
         summary = pd.DataFrame([{
@@ -27,32 +25,11 @@ def load_data():
             "loss": 0
         }])
 
-    # 🧩 Fix header mismatch (convert all to lowercase & safe names)
-    customers.columns = (
-        customers.columns.str.strip()
-        .str.lower()
-        .str.replace(" ", "_")
-        .str.replace("(", "", regex=False)
-        .str.replace(")", "", regex=False)
-    )
-
-    summary.columns = (
-        summary.columns.str.strip()
-        .str.lower()
-        .str.replace(" ", "_")
-        .str.replace("(", "", regex=False)
-        .str.replace(")", "", regex=False)
-    )
-
-    # Map alternative header names (from C CSV)
-    rename_map = {
-        "goldrate": "gold_rate",
-        "silverrate": "silver_rate"
-    }
-    summary.rename(columns=rename_map, inplace=True)
+    # 🧩 Normalise headers
+    customers.columns = customers.columns.str.strip().str.lower().str.replace(" ", "_")
+    summary.columns = summary.columns.str.strip().str.lower().str.replace(" ", "_")
 
     return customers, summary
-
 
 # --- Load data ---
 customers, summary = load_data()
@@ -151,3 +128,4 @@ with tab3:
         st.plotly_chart(fig3, use_container_width=True)
 
 st.caption("📘 Data auto-generated from your C Jewellery Shop program.")
+

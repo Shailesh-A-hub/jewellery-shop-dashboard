@@ -1,3 +1,31 @@
+import streamlit as st
+import pandas as pd
+import numpy as np
+import plotly.express as px
+import plotly.graph_objects as go
+from datetime import datetime, timedelta
+import hashlib
+import warnings
+
+warnings.filterwarnings("ignore")
+
+st.set_page_config(
+    page_title="💎 Jewellery AI Dashboard",
+    layout="wide",
+    page_icon="💎",
+    initial_sidebar_state="expanded"
+)
+
+# Initialize session state
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+    st.session_state.user_role = None
+    st.session_state.username = None
+
+# ... rest of your code
+
+
+
 import google.generativeai as genai
 import streamlit as st
 import time

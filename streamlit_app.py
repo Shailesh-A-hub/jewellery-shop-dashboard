@@ -399,7 +399,6 @@ def get_accessible_pages(role):
             "⚡ Quick Actions",
             "🤖 AI Assistant",
             "💬 Chatbot",
-            "🔎 Integrated Chatbot",
             "👨‍💼 Staff Dashboard",
         ],
         "Customer": [
@@ -421,7 +420,6 @@ def get_accessible_pages(role):
             "🤖 AI Assistant",
             "💬 Smart Commands",
             "💬 Chatbot",
-            "🔎 Integrated Chatbot",
             "🤖 ML Models",
             "💎 Chit Management",
             "⚙️ Advanced Settings",
@@ -436,7 +434,7 @@ def get_accessible_pages(role):
 def login_page():
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        st.markdown("<h1 class='main-title'>💎 Jewellery AI Dashboard</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 class='main-title'> AI Dashboard</h1>", unsafe_allow_html=True)
         st.markdown("### Premium Management System for Indian Jewellery Retail")
         st.divider()
 

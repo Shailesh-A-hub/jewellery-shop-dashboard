@@ -1,3 +1,9 @@
+# Force reload
+import time
+import random
+_reload_id = random.random()
+
+
 import streamlit as st
 import pandas as pd
 import numpy as np
